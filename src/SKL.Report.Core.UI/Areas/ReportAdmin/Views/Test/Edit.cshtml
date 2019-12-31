@@ -1,0 +1,45 @@
+@model ReportEditModel
+@{
+    Layout="/Areas/ReportAdmin/Views/Shared/_Edit.cshtml";
+}
+<div class="layui-row">
+<form class="layui-form" method="post">
+    <div class="layui-form-item">
+        <label class="layui-form-label">名称</label>
+        <div class="layui-input-inline">
+        <input type="text" asp-for="ReportName" required  lay-verify="required" placeholder="报告名称" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">开放日期</label>
+        <div class="layui-input-inline">
+        <input type="text" asp-for="OpenDate" required  lay-verify="required" placeholder="开放日期" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-inline">
+            <textarea asp-for="ReportDesc" placeholder="报告描述" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+        </div>
+    </div>
+</form>
+</div>
+@section footer{
+    <script type="text/javascript">
+        layui.use('laydate', function(){
+            var laydate = layui.laydate;
+            
+            //执行一个laydate实例
+            laydate.render({
+                elem: '#OpenDate', //指定元素
+                range:'~'
+            });
+        });
+
+    </script>
+}

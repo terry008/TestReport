@@ -1,0 +1,62 @@
+@model IEnumerable<rpt_info>
+
+<table class="layui-table">
+    <thead>
+        <tr>
+            <th>ID
+            </th>
+            <th>考试名称
+            </th>
+            <th>状态
+            </th>
+            <th>人数
+            </th>
+            <th>查询次数
+            </th>
+            <th>操作
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@if(Model!=null&&Model.Count()>0)
+    {
+        @foreach (var item in Model)
+        {            
+        <tr>
+            <td>
+                @item.ID
+            </td>
+            <td>
+                @item.ReportName
+            </td>
+            <td>
+                @item.Status
+            </td>
+            <td>
+                @item.TestCount
+            </td>
+            <td>
+                @item.SearchCount
+            </td>
+            <td>
+                <a href="javascript:;" data-id="@item.ID" data-action="scoresDetail">成绩详情</a>
+                <a href="javascript:;" data-id="@item.ID" data-action="EditTest">修改信息</a>
+                <a href="javascript:;" data-id="@item.ID" data-action="TestSet">考试设置</a>
+                <a href="javascript:;" data-id="@item.ID" data-action="ImportScores">导入成绩</a>
+                <a href="javascript:;" data-id="@item.ID" data-action="PYSet">评语设置</a>
+                <a href="javascript:;" data-id="@item.ID" data-action="Preview">查询预览</a>
+                <a href="javascript:;" data-id="@item.ID" data-action="Qr">生成查询二维码</a>
+                <a href="javascript:;" data-id="@item.ID" data-action="SetModule">模块管理</a>
+            </td>
+        </tr>
+        }
+    }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="6" class="tocenter">
+                
+            </td>
+        </tr>
+    </tfoot>
+</table>

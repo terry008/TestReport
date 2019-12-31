@@ -1,0 +1,136 @@
+@{
+    Layout="/Areas/ReportAdmin/Views/Shared/_Edit.cshtml";
+}
+@section head{
+    <style type="text/css">
+    .border{
+        border-left:1px solid #ddd;
+        height: 100%;
+    }
+    </style>
+}
+<div class="layui-row">
+    <div class="layui-col-sm4">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>模块列表</legend>
+            <div class="layui-field-box">
+                <div id="moduleTree"></div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="layui-col-sm8 border">
+        <div class="row" style="margin-bottom:30px;">
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend>添加评语</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">模块名称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="ModuleName" readonly="readonly" class="layui-input">
+                            <input type="hidden" id="ModuleID" value="0">
+                        </div>
+                        <label class="layui-form-label">分值≤</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="MaxScores" required  lay-verify="required" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">评语</label>
+                        <div class="layui-input-block">
+                            <textarea class="layui-textarea" id="CommentContent"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit id="add" lay-filter="formDemo">新增</button>
+                        <button class="layui-btn layui-btn-danger layui-hide" id="update" lay-submit lay-filter="formDemo">修改</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            
+        </div>
+        <div class="row">
+            <div class="layui-col-md12" id="comments"></div>
+        </div>
+    </div>
+</div>
+<script id="pytmp" type="text/html">
+<div class="layui-collapse">
+    {{# layui.each(d,function(index,item){ }}
+    <div class="layui-colla-item">
+        <h2 class="layui-colla-title">小于等于 {{ item.maxScores }} 分</h2>
+        <div class="layui-colla-content layui-show">{{ item.commentContent }}</div>
+    </div>
+    {{# });  }}
+</div>
+</script>
+
+@section footer{
+    <script type="text/javascript">
+    //模块树
+    layui.use('tree', function(){
+        var tree = layui.tree;
+        $.post('/reportadmin/module/getmoduletree',{rptid:@ViewData["rptid"]},function(data){
+            //console.log(data)
+            //渲染
+            var inst1 = tree.render({
+            elem: '#moduleTree',
+            data: data,
+            onlyIconControl: true,
+            click:function(obj){
+                //console.log(obj.data.id);
+                getComment(obj.data.id);
+            }
+            });
+        })        
+    });
+
+    //获取模块评语
+    var getComment=function(mid){
+        $('#ModuleID').val(mid);
+        var rptid=@ViewData["rptid"];
+
+        //获取模块信息
+        if(mid===0){
+            $('#ModuleName').val('总评');
+        }else{
+            $.post('/reportadmin/module/GetModule',{id:mid},function(obj){
+                $('#ModuleName').val(obj.moduleName);
+            });
+        }
+        //获取模块评语列表
+        $.post('/reportadmin/pingyu/GetCommentList',{rptid:rptid,mid:mid},function(data){
+            if(data.length>0){
+                layui.use('laytpl', function(){
+                    var laytpl = layui.laytpl;
+                    laytpl($('#pytmp').html()).render(data,function(html){
+                        $('#comments').html(html);
+                    });
+                });
+            }else{
+                $('#comments').html('');
+            }
+        });
+    }
+
+    $(function(){
+        //初次加载总评语
+        getComment(0);
+        //添加评语
+        $('#add').click(function(){
+            var reportID=@ViewData["rptid"];
+            var data={
+                ReportID:reportID,
+                ModuleID:$('#ModuleID').val(),
+                MaxScores:$('#MaxScores').val(),
+                CommentContent:$('#CommentContent').val(),
+            };
+            $.post('/reportadmin/pingyu/addpy',data,function(obj){
+                //console.log(obj);
+                getComment($('#ModuleID').val());
+            });
+        })
+    })
+    </script>
+}

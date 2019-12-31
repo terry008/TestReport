@@ -1,0 +1,36 @@
+@model IEnumerable<SKL.Report.Core.UI.Models.ModulesDetail>
+@{
+    bool showSort=(bool)ViewData["showSort"];
+}
+@if(Model!=null&&Model.Count()>0){
+
+                                    <div class="infotable table-responsive">
+                                        <table class="table table-bordered table-hover table-responsive" style="text-align: center;">
+                                            <thead>
+                                                <tr style="background-color: #ffd2ab;">
+                                                    <th>模块</th>
+                                                    <th>总分</th>
+                                                    <th>平均分</th>
+                                                    <th>我的得分</th>
+                                                    @if(showSort){
+                                                    <th>模块排名</th>
+                                                    }
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var module in Model)
+                                                {
+                                                        <tr>
+                                                            <td>@module.ModuleName</td>
+                                                            <td>@module.ModuleTotalScores</td>
+                                                            <td>@module.ModuleAvgScores</td>
+                                                            <td>@module.MyModuleScores</td>
+                                                             @if(showSort){
+                                                            <td>@module.MyModuleSort</td>
+                                                            }
+                                                        </tr>                                                    
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+}

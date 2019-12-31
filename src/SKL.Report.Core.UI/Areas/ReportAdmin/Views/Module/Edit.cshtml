@@ -1,0 +1,102 @@
+@model rpt_modules
+@{
+    Layout="/Areas/ReportAdmin/Views/Shared/_Edit.cshtml";
+}
+@section head{
+    <style type="text/css">
+    .border{
+        border-left:1px solid #ddd;
+        height: 100%;
+    }
+    </style>
+}
+<div class="layui-row">
+    <div class="layui-col-sm6">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>模块列表</legend>
+            <div class="layui-field-box">
+                <div id="moduleTree"></div>
+            </div>
+        </fieldset>
+        <h3></h3>
+    </div>
+    <div class="layui-col-sm6 border">
+        <form class="layui-form" method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块名称</label>
+                <div class="layui-input-inline">
+                <input type="text" asp-for="ModuleName" required  lay-verify="required" placeholder="模块名称" autocomplete="off" class="layui-input">
+                <input type="hidden" asp-for="ReportID">
+                <input type="hidden" asp-for="ID">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">上级模块</label>
+                <div class="layui-input-inline">
+                <input type="text" asp-for="FatherModuleID" required  lay-verify="required" placeholder="上级模块" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块总分</label>
+                <div class="layui-input-inline">
+                <input type="text" asp-for="ModuleTotalScores" required  lay-verify="required" placeholder="模块总分" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块平均分</label>
+                <div class="layui-input-inline">
+                <input type="text" asp-for="ModuleAvgScores" required  lay-verify="required" placeholder="模块总分" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">模块排序</label>
+                <div class="layui-input-inline">
+                <input type="text" asp-for="ModuleSort" required  lay-verify="required" placeholder="模块排序" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                <button class="layui-btn" lay-submit id="add" lay-filter="formDemo">新增</button>
+                <button class="layui-btn layui-btn-danger layui-hide" id="update" lay-submit lay-filter="formDemo">修改</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section footer{
+    <script type="text/javascript">
+    layui.use('tree', function(){
+        var tree = layui.tree;
+        $.post('/reportadmin/module/getmoduletree',{rptid:@Model.ReportID},function(data){
+            //console.log(data)
+            //渲染
+            var inst1 = tree.render({
+            elem: '#moduleTree',
+            data: data,
+            onlyIconControl: true,
+            click:function(obj){
+                //console.log(obj.data.id);
+                if(obj.data.id>0){
+                    $.post('/reportadmin/module/getmodule',{id:obj.data.id},function(m){
+                        //console.log(m)
+                        $('#ID').val(m.id);
+                        $('#ModuleName').val(m.moduleName);
+                        $('#FatherModuleID').val(m.fatherModuleID);
+                        $('#ModuleTotalScores').val(m.moduleTotalScores);
+                        $('#ModuleAvgScores').val(m.moduleAvgScores);
+                        $('#ModuleSort').val(m.moduleSort);
+                        $('#update').removeClass('layui-hide');
+                    });
+                }
+            }
+            });
+        })        
+    });
+    $(function(){
+        $('#add').click(function(){
+            $('#ID').val('');
+            return true;
+        })
+    })
+    </script>
+}

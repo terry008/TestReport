@@ -1,0 +1,68 @@
+@model rpt_user
+@{
+    Layout="/Areas/ReportAdmin/Views/Shared/_Edit.cshtml";
+}
+<div class="layui-row">
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+        <input type="text" asp-for="Name" required  lay-verify="required" placeholder="学生姓名" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话</label>
+        <div class="layui-input-block">
+        <input type="text" asp-for="Phone" required  lay-verify="required" placeholder="学生电话" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div id="scores">
+
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="tmp">
+        <table class="layui-table">
+            <colgroup>
+                <col width="280">
+                <col>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>模块</th>
+                    <th>得分</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{# layui.each(d,function(index,item){ }}
+                <tr>
+                    <td>{{ item.item1 }}</td>
+                    <td><input type="text" id="m_{{ item.item2 }}" value="{{ item.item3 }}" class="layui-input"></td>
+                </tr>
+                {{# });  }}
+            </tbody>
+        </table>
+</script>
+@section footer{
+    <script type="text/javascript">
+        $(function(){
+            LoadScores();
+        })
+
+        var LoadScores=function(){
+            $.post('/reportadmin/module/GetModuleTable',{rptid:24,userid:1},function(data){
+                layui.use('laytpl', function(){
+                    var laytpl = layui.laytpl;
+                    laytpl($('#tmp').html()).render(data,function(html){
+                        $('#scores').html(html);
+                    });
+                });
+            })
+        }
+
+    </script>
+}

@@ -1,0 +1,502 @@
+﻿body {
+    color: #666;
+    font-family: "微软雅黑";
+    background-color: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+table {
+    max-width: 100% !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+}
+
+img {
+    border: none;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/*效果开始*/
+
+
+/*左边固定定位*/
+
+.leftad {
+    position: fixed;
+    max-width: 420px;
+    height: 100%;
+    background-color: #2e8b76;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+}
+
+.leftad p {
+    color: #000;
+    font-size: 18px;
+    text-align: center;
+    line-height: 30px;
+}
+
+
+/*学员信息*/
+
+.total {
+    margin: 30px 0 40px 0;
+}
+
+.total-one {
+    border-bottom: 8px solid #dfdfe9;
+    -webkit-border-radius: 0 0 8px 0;
+    -moz-border-radius: 0 0 8px 0;
+    border-radius: 0 0 8px 0;
+    width: 240px;
+    margin: 20px auto 0 auto;
+}
+
+.test_info {
+    margin-top: 20px;
+}
+
+
+/*成绩信息*/
+
+.total-two {
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.subject_num,
+.sort_num,
+.subject_col,
+.sort_col,
+.subject_title,
+.sort_title {
+    /*width: 13%;*/
+    float: left;
+    text-align: center;
+    margin-right: 8%;
+}
+
+.subject_col {
+    height: 100%;
+    background-color: #2e8b75;
+}
+
+.sort_num,
+.sort_col,
+.sort_title {
+    margin-right: 0;
+}
+
+.sort_col {
+    height: 100%;
+    background-color: #e67015;
+}
+
+.col_height {
+    background-color: white;
+}
+
+.content {
+    max-width: 930px;
+}
+
+.title h1,
+.title h2 {
+    margin: 70px auto;
+    font-family: "宋体";
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.title h2 {
+    font-size: 28px;
+}
+
+.smalllogo {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #2e8b75;
+    padding: 10px 0;
+}
+
+.smalllogo img {
+    margin-left: 10px;
+    max-width: 380px;
+}
+
+.subject_content {
+    background-color: #fff;
+}
+
+.test_title {
+    background-color: #258470;
+    color: white;
+    line-height: 43px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.test_title_bg {
+    background-color: #e87b1e;
+}
+
+.test_title img {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
+/*个人信息*/
+
+.ul01 {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 0px;
+}
+
+.ul01 li {
+    width: 45px;
+    height: 90px;
+    margin-right: 27px;
+    float: left;
+}
+
+.ul01 li.last {
+    margin-right: 0;
+}
+
+.ul01 li h3 {
+    text-align: center;
+    line-height: 20px;
+    margin-bottom: 0px;
+}
+
+.ul01 li p {
+    width: 45px;
+    height: 50px;
+    margin-bottom: 0px;
+    background-color: #2e8b75;
+}
+
+.ul01 li.one p {
+    height: 30px;
+    margin-top: 20px;
+}
+
+.ul01 li.two p {
+    height: 36px;
+    margin-top: 14px;
+}
+
+.ul01 li.three p {
+    height: 20px;
+    margin-top: 30px;
+}
+
+.ul01 li.last p {
+    height: 10px;
+    margin-top: 40px;
+    background-color: #e67015;
+}
+
+.ul02 {
+    margin: 0 auto;
+}
+
+.ul02 li {
+    width: 45px;
+    margin-right: 27px;
+    float: left;
+}
+
+.ul02 li.last {
+    margin-right: 0px;
+}
+
+.ul02 li h4 {
+    text-align: center;
+}
+
+
+/*获奖学员名单*/
+
+.winner_list_title {
+    color: red;
+    font-size: 18px;
+    height: 24px;
+    line-height: 24px;
+    font-weight: bold;
+}
+
+.winner_list {
+    width: 100%;
+    height: auto;
+}
+
+.winner_list li {
+    width: 46px;
+    float: left;
+    text-align: center;
+}
+
+
+/*表格*/
+
+table>thead>tr>th,
+table>tbody>tr>th {
+    text-align: center;
+}
+
+
+/*语文成绩分析点评*/
+
+.dote {
+    width: 44px;
+    height: 44px;
+    margin: 10px 10px 10px 0;
+    background-color: #e87b1e;
+    -moz-border-radius: 22px;
+    -webkit-border-radius: 22px;
+    -border-radius: 22px;
+    border-radius: 22px;
+    font-size: 24px;
+    text-align: center;
+    line-height: 44px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.dote-title {
+    font-size: 18px;
+    margin: 10px 0 10px 0;
+    height: 44px;
+    line-height: 44px;
+    color: #000;
+}
+
+.language_wrap {
+    margin: 10px 0;
+}
+
+.language {
+    height: 36px;
+    line-height: 36px;
+    text-align: left;
+    font-size: 12px;
+    padding-left: 30px;
+    margin: 0px;
+}
+
+.language_chinese {
+    line-height: 36px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    margin-right: 10px;
+}
+
+.language b {
+    color: #e87b1e;
+    font-size: 14px;
+}
+
+.language b strong {
+    font-size: 24px;
+}
+
+.pyContent {
+    text-indent: 2em;
+    line-height: 24px;
+}
+
+.leftbg {
+    border-left: 2px solid #ccc;
+    margin-left: 7px;
+    padding: 10px;
+}
+
+.leftbglast {
+    margin-left: 7px;
+    padding: 10px;
+}
+
+
+/*广告*/
+
+.subject_ad_in {
+    border: 1px solid #e67015;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.subject_ad_head {
+    width: 100%;
+    height: 46px;
+    line-height: 46px;
+    background-color: #e87b1e;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+}
+
+.subject_ad ul {
+    width: 100%;
+    height: auto;
+}
+
+.subject_ad ul li {
+    float: left;
+    width: 100%;
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.subject_ad ul li.last {
+    border-bottom: none;
+}
+
+.subject_ad ul li a {
+    display: block;
+}
+
+
+/*整体点评*/
+
+.test_title_ztbg {
+    background-color: #000;
+}
+
+.ztdp {
+    background: url(../images/ztdp.png) no-repeat;
+    background-size: 100% auto;
+    height: 100px;
+}
+
+
+/*footer*/
+
+.footer {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.footer_hd {
+    height: 1px;
+    border: none;
+    border-top: 1px solid #666;
+}
+
+.footer_bd,
+.footer_ft {
+    width: auto;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.footer_ft {
+    height: auto;
+}
+
+.footer a {
+    color: #666;
+}
+
+.zhu_tu {
+    width: 100%;
+    height: 250px;
+}
+
+.subject_dp {
+    height: 36px;
+    line-height: 36px;
+    text-align: left;
+    font-size: 12px;
+    padding-left: 30px;
+    margin: 0px;
+}
+
+.subject_dp_title {
+    line-height: 36px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    margin-right: 10px;
+}
+
+.subject_dp b {
+    color: #e87b1e;
+    font-size: 14px;
+}
+
+.subject_dp b strong {
+    font-size: 24px;
+}
+
+.teacherbox {
+    text-align: center;
+    height: 190px;
+    margin-top: 0px;
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    margin: 5px auto;
+    position: relative;
+    border: 1px solid #ccc;
+}
+
+.teacherbox img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.wenzi {
+    background: rgba(0, 0, 0, 0.3) !important;
+    /* IE无效，FF有效 */
+    background: #000;
+    filter: alpha(opacity=30);
+    width: 100%;
+    height: 45px;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    overflow: hidden;
+}
+
+.wenzi p {
+    margin: 0;
+    padding: 0;
+    font-family: "宋体";
+    color: White;
+    line-height: 22px;
+    font-weight: bold;
+    font-size: 12px;
+}

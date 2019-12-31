@@ -1,0 +1,143 @@
+﻿body
+{
+	margin:0;padding:0;
+	background-color:#f6f6f6;
+	font-size:12px;
+	font-family:"微软雅黑","Times New Roman";
+}
+#container
+{width:1000px; margin:0 auto; background-color:White;}
+#logo{width:1000px; height:60px; background:url('../Images/top.png') no-repeat;border-bottom: 3px solid #21304a;}
+#info{height:350px; background-color:Aqua;}
+#shuoming{width:525px; height:350px; float:left;background-color: #2c3b56;}
+#shuoming h1{color: White;
+	font-size: 30px; margin:20px 0 0 20px;}
+#shuoming p{text-indent:2em;line-height: 32px;
+            color: White;
+            font-size: 16px; margin:10px 20px;}
+	#shuoming a
+	{
+		color:White;
+	}
+#peitu{width:475px; height:350px; float:left; background:url('../Images/ks.jpg') no-repeat; background-color:#999;}
+#ztfx,.subject_info,#final,#bottom{width:966px; margin-left:32px; border:1px solid #2c3b56; background:url('../Images/wrapBg.png');}
+
+#arrow
+{
+	margin-left:20px;
+	width: 25px;
+	height: 13px;
+	background: url('../Images/arrow.png') no-repeat;
+}
+.line
+{
+	background: url('../Images/linebg.png') repeat-x 0px -80px;
+	width:95%;
+	height: 3px;
+	overflow: hidden;
+	margin:0 auto;
+}
+
+.clear{clear:both;}
+/*整体分析文本*/
+.ztfx_txt{padding:20px;}
+/*获奖名单*/
+.ztfx_paiming{border-top:1px dashed #ccc; padding:0 20px;}
+/*总标题*/
+#ptitle{width: 1000px;
+	height: 100px;
+	text-align: center;
+	background: url('../Images/lineBg.png') 0px -120px repeat-x;
+	overflow: hidden;}
+#ptitle h1{line-height: 100px;
+	font-family: "黑体";
+	margin: 0;
+	padding: 0;
+	font-size: 35px;
+	letter-spacing: -3px;}
+/*一级标题*/
+.infotitle{width:95%; margin:0 auto; text-indent:2em; margin-top:20px; font-size:24px; line-height:40px; background:url('../Images/pan.png') no-repeat;}
+/*二级标题*/
+.title1{ font-size:16px; margin-top:20px; text-indent:2em; font-weight:bold; line-height:30px;}
+/*三级标题*/
+.title2{font-size:14px; margin-top:20px; text-indent:2em; font-weight:bold;}
+/*左侧容器*/
+.leftp{width:720px; float:left; border-right:1px dashed #ccc;}
+.rightp{width:240px; float:left;}
+/*广告位*/
+.ad968x100{width:968px; height:100px; text-align:center; line-height:100px; clear:both; margin:8px 0 8px 32px; background-color:Aqua;}
+.ad968x100 a{border:0; text-decoration:none;}
+.ad968x100 img{border:0; width:968px; height:100px;}
+/*老师*/
+.teachers{}
+.teachertitle{background:url('../Images/ltitle.png') no-repeat; font-weight:bold; width:90%; margin:10px auto; line-height:47px; width:221px; height:47px; font-size:15px; color:white; text-indent:4em;}
+.teachers a{text-decoration:none; color:#333;}
+.teachers a img{border:none; vertical-align:middle;}
+.teacherlist{ width:370; height:130px; margin-top:20px; margin-left:10px; text-align:center;}
+.teacherlist img{border:1px solid #dddddd;}
+.teacherinfo{float:left; width:210px; height:50px; font-size:12px;}
+.teacherinfo p{margin:0;padding:0; margin-left:5px;}
+.teacher_p1{ line-height:30px; }
+.teacher_p2{ color:#666; line-height:24px;}
+.teacher_p3{ margin-top:8px; line-height:20px; color:#777;}
+.teacher_p2 span{margin-right:5px;}
+.teachername{font-size:14px; font-weight:bold;}
+
+.teachersimg{text-align:center; height:190px; margin-top:20px;}
+  .teacherbox{width:200px; height:178px; over-flow:hidden; margin:0 auto; position:relative; border:1px solid #ccc;}
+.wenzi
+{
+background: rgba(0, 0, 0, 0.3) !important; /* IE无效，FF有效 */  
+            background: #000;  
+            filter: alpha(opacity=30);  
+            width: 100%;  
+            height: 45px;  
+			bottom:0;
+			left:0;
+			position:absolute;
+			text-align:center;	
+			overflow:hidden;		
+} 
+.wenzi p{margin:0;padding:0; font-family:"宋体"; color:White; line-height:22px; font-weight:bold; font-size:12px;}
+/*侧边富广告*/
+.richad{ margin-top:20px; border-top:1px dashed #ccc;}
+
+/*科目信息*/
+.subject_info{clear:both;}
+
+/*数据表格*/
+.infotable{width:95%; margin:20px auto;}
+.infotable table{background-color:#f79646; text-align:center;}
+.infotable table thead tr{ background-color:#f79646; line-height:30px; color:White; font-weight:bold; font-size:18px;}
+.infotable table tbody tr{ background-color:white; line-height:25px;}
+.infotable table tfoot tr{ background-color:#fbd5b5; line-height:25px; font-size:14px; font-weight:bold;}
+
+/*柱状图*/
+.chart{width:95%; height:300px; margin:20px auto; padding-bottom:20px; border-bottom:1px dashed #ccc;}
+
+/*模块点评*/
+.dianping{clear:both;}
+.dianping p{padding:0 20px; line-height:24px; font-size:14px; text-indent:2em;}
+
+/*总评*/
+#final{}
+.finalp{width:80%; float:left; padding:5px 5px 0 20px; text-indent:2em; line-height:30px; font-size:16px;}
+.finalimg{width:81px; height:81px; margin:30px 0 0 20px; background:url('../Images/final.png') no-repeat; float:left;}
+/*尾部*/
+#bottom{
+	background: url('../Images/wrapBg.png');
+	margin-top:10px;
+	margin-bottom:20px;
+	padding:20px 0;
+	text-align: center;
+	color: Black;
+}
+#links a
+{
+	margin: 20px;
+	width: 100px;
+	text-decoration: none;
+	color: black;
+}
+
+.fontred{color:Red;}

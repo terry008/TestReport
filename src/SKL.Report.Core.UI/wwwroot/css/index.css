@@ -1,0 +1,115 @@
+﻿
+#logo_nav {
+    height: auto;
+    line-height: 26px;
+    font-size: 12px;
+}
+
+    #logo_nav img {
+        margin-top: 5px;
+    }
+
+#nav {
+    text-align: center;
+    line-height: 30px;
+    padding-top: 10px;
+}
+
+    #nav a {
+        margin: 0 10px;
+        color: #959595;
+        text-decoration: none;
+    }
+
+        #nav a:hover {
+            color: #626262;
+        }
+
+#bg_color {
+    background-color: #285d6d;
+}
+
+#bg_img {
+    height: 470px;
+    background: url('/images/20141005053218187.png') no-repeat center center;
+}
+
+#search {
+    min-width: 260px;
+    max-width: 350px;
+    height: 410px;
+    background-color: #f9fcff;
+    margin: 20px auto;
+    -moz-border-radius: 5px; /* Gecko browsers */
+    -webkit-border-radius: 5px; /* Webkit browsers */
+    border-radius: 5px; /* W3C syntax */
+}
+
+#bottom_nav {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 12px;
+    background-color: #fff;
+    color: #999;
+}
+
+    #bottom_nav p a {
+        text-decoration: none;
+        color: #999;
+    }
+
+.nav_href a {
+    text-decoration: none;
+    color: #555;
+    margin: 0 10px;
+}
+
+#title {
+    height: 100px;
+    line-height: 100px;
+    font-size: 24px;
+    text-align: center;
+    color: #5790c6;
+}
+
+.info {
+    width: 80px;
+    text-align: right;
+    float: left;
+    line-height: 48px;
+    color: #858585;
+}
+
+.shuru {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 88%;
+}
+
+.subject_wrap {
+    margin: 10px 0;
+    /*background: url(../images/ywbgc.png)no-repeat 0 18px;*/
+}
+
+    .subject_wrap:first-of-type {
+        /*background: url(../images/ywbgh.png)no-repeat 0 18px;*/
+    }
+
+    .subject_wrap:last-of-type {
+        /*background: url(../images/ywbgf.png) no-repeat 0 18px;*/
+    }
+
+.subject_dp_title {
+    line-height: 36px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    margin-right: 10px;
+}
+
+#msg {
+    text-align: center;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}

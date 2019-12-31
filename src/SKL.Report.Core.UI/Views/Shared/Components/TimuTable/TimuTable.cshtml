@@ -1,0 +1,30 @@
+@model IEnumerable<SKL.Report.Core.UI.Models.TimuDetail>
+    @if(Model!=null&&Model.Count()>0){
+<div class="table-responsive">
+
+                                                                <table class="table table-bordered table-condensed table-response xiaoticss">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th style="width: 80px;">题号</th>
+                                                                            <th>本题考点及评语</th>
+                                                                            <th style="width: 80px;">分值</th>
+                                                                            <th style="width: 80px;">平均分</th>
+                                                                            <th style="width: 80px;">我的得分</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        @foreach (var timu in Model)
+                                                                        {
+                                                                                <tr>
+                                                                                    <td>@timu.TMNo</td>
+                                                                                    <td>@timu.TmPy</td>
+                                                                                    <td>@timu.Scores</td>
+                                                                                    <td>@timu.Avgs</td>
+                                                                                    <td>@timu.MyScores</td>
+                                                                                </tr>
+                                                                        }
+                                                                    </tbody>
+                                                                </table>
+
+                                                            </div>
+    }

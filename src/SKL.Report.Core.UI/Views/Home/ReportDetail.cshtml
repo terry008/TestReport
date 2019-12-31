@@ -1,0 +1,268 @@
+@{
+    Layout=null;
+}
+@model ReportViewModel
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" id="viewport" />
+    <title>@ViewData["title"] - 思考乐测评报告系统</title>
+    <script src="/js/echarts.min.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.4.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/index2.css" rel="stylesheet" />
+    <style type="text/css">
+        .xiaoticss tr {
+            text-indent: 0;
+            text-align: center;
+        }
+
+        .sc {
+            line-height: 24px;
+            margin-top: 30px;
+            font-size: 16px;
+        }
+
+        .pcsc {
+            line-height: 24px;
+            margin-top: 30px;
+            text-indent: 2em;
+            font-size: 17px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="hidden-xs hidden-sm col-md-4">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 content">
+                <!--标题-->
+                <div class="title row text-center">
+                    <div class="smalllogo hidden-md hidden-lg">
+                        <img src="/images/smalllogo.png" width="90%" />
+                    </div>
+                    <h1 class="hidden-xs hidden-sm">
+                        @Model.Title
+                    </h1>
+                    <h2 class="hidden-md hidden-lg">
+                        @Model.Title</h2>
+                </div>
+                <!--成绩排名-->
+                <div class="row">
+                    <div class="col-md-10 col-sm-12 col-md-offset-1">
+                        <h2 style="font-size: 28px; font-weight: bold; line-height: 35px;"><u>
+                            @Model.StuName</u>同学：</h2>
+                        <p class="visible-md visible-lg visible-sm">
+                            你本次考试总分：<b style="font-size: 40px; color: orange;">@Model.TotalScores.ToString("0.0")分</b>
+                                @if(Model.ShowSort){
+                                    <span>整体排名：<b style="font-size: 35px; color: red;">@(Model.MySort)名</b>(排名超越了@(Model.OverRate)%的学生)</span>
+                                }
+                        </p>
+
+                        <div class="visible-xs sc">你本次考试总分：<b style="font-size: 30px; color: orange;">@(Model.TotalScores)分</b></div>
+                        @if(Model.ShowSort){
+                        <div class="visible-xs sc">
+                            整体排名：<b style="font-size: 25px; color: red;">@(Model.MySort)名</b>(排名超越了@(Model.OverRate)%的学生)
+                        </div>
+                        }
+                        <div class="visible-xs sc"></div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-10 col-sm-12 col-md-offset-1">
+                        <h2 style="font-size: 24px; font-weight: bold; line-height: 35px;">各科目得分及排名</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-responsive" style="text-align: center;">
+                                <thead>
+                                    <tr style="background-color: #ffd2ab;">
+                                        <th>科目</th>
+                                        <th>科目总分</th>
+                                        <th>科目平均分</th>
+                                        <th>我的得分</th>
+                                        @if(Model.ShowSubjectSort){
+                                        <th>单科排名</th>
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        foreach(var item in Model.SubjectSummary){
+                                            <tr>
+                                                    <td>@item.SubjectName</td>
+                                                    <td>@item.TotalScores</td>
+                                                    <td>@item.AvgScores</td>
+                                                    <td>@item.MyScores</td>
+                                                    @if(Model.ShowSubjectSort){
+                                                    <td>@item.MySort</td>
+                                                    }
+                                                </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--考试说明-->
+                @if(Model.ShowTestRemark){
+                    <div class="test_info row">
+                        <h3 class="text-center test_title col-md-12">
+                            <img src="/images/xt.png" width="28" height="26" />考试说明</h3>
+                        <div class="col-md-12">
+                            @Model.TestRemark
+                        </div>
+                    </div>
+                }
+                <!--整体分析-->
+                @if(Model.ShowAnalysis){
+                    <div class="test_info row ">
+                        <h3 class="text-center test_title col-md-12">
+                            <img src="/images/xt.png" width="28" height="26" />@Model.AnalysisTitle</h3>
+                        <p class="col-md-12">
+                            @Model.Analysis
+                        </p>
+                    </div>
+                }
+
+                <!--获奖名单-->
+                @if(Model.ShowAwards){
+                    <div class="test_info row">
+                        <h3 class="text-center test_title col-md-12">
+                            <img src="/images/xthj.png" width="25" height="25" />@Model.AwardsTitle</h3>
+                        <div class="col-md-12">
+                            @Model.Awards
+                        </div>
+                    </div>
+                }
+                
+                <!--科目点评分析-->
+                @foreach (var item in Model.Subjects)
+{
+ <div class="subject_info row">
+                                <!--科目框-->
+                                <h3 class="text-center test_title test_title_bg">
+                                    <img src="/images/xtym.png" width="36" height="32" />
+                                    @item.SubjectName</h3>
+
+                                <div class="subject_content col-md-12 col-sm-12 col-xs-12">
+                                    <div class="clearfix">
+                                        <p class="dote pull-left">1</p>
+                                        <h4 class="dote-title pull-left">
+                                            @(item.SubjectName)各模块成绩反馈表</h4>
+                                    </div>
+                                    <!--显示科目内各模块表格-->
+                                    @await Component.InvokeAsync("SubjectTable",new{modules=item.Modules,showSort=Model.ShowSubjectSort})
+
+                                    <div class="clearfix">
+                                        <p class="dote pull-left">2</p>
+                                        <h4 class="dote-title pull-left">
+                                            <!--柱状图标题-->
+                                           @(item.SubjectName)各模块强弱分析</h4>
+                                    </div>
+                                    @await Component.InvokeAsync("Chart",new{item.Modules})
+                                    <div ID="p_kmzp">
+                                        <div class="clearfix">
+                                            <p class="dote pull-left">3</p>
+                                            <h4 class="dote-title pull-left">
+                                                <!--科目点评标题-->
+                                                @(item.SubjectName)名师点评</h4>
+                                        </div>
+                                        <div>
+                                            <div class="language_wrap clearfix">
+                                                <!--模块点评，循环-->
+                                                @for (int i = 0; i < item.Modules.Count(); i++)
+                                                {
+                                                    var module=item.Modules[i];
+                                                    var bgimg="ywbgh.png";
+                                                    var px="18px";
+                                                    if(i!=0){
+                                                        bgimg="ywbgc.png";
+                                                        px="0px";
+                                                    }
+                                                        <div>
+                                                            <h5 class="subject_dp" style="background: url(/images/@bgimg) no-repeat 0 @px;">
+                                                            <span class="subject_dp_title">@module.ModuleName</span>
+                                                            <b><strong>
+                                                                @module.MyModuleScores
+                                                            </strong>分</b>
+                                                            /满分 @(module.ModuleTotalScores) 分
+                                                            </h5>
+                                                        </div>
+                                                        <div class="pyContent leftbg">
+                                                            <!--小题表格展示-->
+                                                            @await Component.InvokeAsync("TimuTable",module.Timus)
+                                                            @module.ModulesPy
+                                                        </div>
+                                                }
+                                                
+                                                <div>
+                                                    <h5 class='subject_dp' style='background: url(/images/ywbgf.png) no-repeat 0 0px;'>
+                                                        <span class="subject_dp_title">@(item.SubjectName)总评</span>
+                                                        <b><strong>
+                                                            @item.MySubjectScores.ToString("n")
+                                                        </strong>分</b>
+                                                        /满分@(item.SubjectTotalScores)分</h5>
+                                                </div>
+                                                <!--科目总评-->
+                                                <div class="pyContent">
+                                                    @item.SubjectPy
+                                                </div>
+                                            </div>
+                                            <!--科目总评-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+}
+
+                <!--考试总评-->
+@if(!string.IsNullOrEmpty(Model.TotalRemark)){
+                <div class="test_total row">
+                    <h3 class="text-center test_title test_title_ztbg">
+                        <img src="/images/xtzt.png" width="35" height="35" />考试整体点评</h3>
+                    <div class="col-md-1 ztdp col-sm-1 col-xs-3">
+                    </div>
+                    <div class="col-md-10 col-sm-10 col-xs-8">
+                        <p style="font-size: 16px; text-indent: 2em; line-height: 30px;">
+@(Model.TotalRemark)
+                        </p>
+                    </div>
+                </div>
+}
+
+               
+                <!--版权-->
+                <div class="footer clearfix">
+                    <hr class="footer_hd" />
+                    <p>
+                        深圳市思考乐文化教育科技发展有限公司&nbsp;&nbsp;Copyright &copy; 2017&nbsp;&nbsp;All Rights Reseved 
+                    </p>
+                    <p>
+                        <a href="http://www.miitbeian.gov.cn/state/outPortal/loginPortal.action;jsessionid=ycnYTnYSBBFmTDqlrJTYNCc16sCRf2jJ8xYdpYvKL1bsRLPpsph5!-1893564368;"
+                            target="_blank">粤ICP备 13083597号-3</a>
+                        <p>思考乐教育信息中心技术支持</p>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-xs hidden-sm col-md-4 leftad" style="padding: 0;">
+            <div style="height: auto; padding-top: 100px;">
+                <img src="/images/logo2.png" width="80%" style="margin: 50px auto;" />
+                <img src="/images/jg.jpg" width="100%" />
+
+            </div>
+            <div style="height: 60%; background-color: #e67016; padding-top: 20px;">
+                <img src="/images/weixin.jpg" width="100%" />
+                <p style="color: white;">微信扫一扫关注</p>
+
+            </div>
+        </div>
+    </div>
+            <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    @* <script src="https://cdn.bootcss.com/echarts/4.4.0-rc.1/echarts.min.js"></script> *@
+</body>
+</html>

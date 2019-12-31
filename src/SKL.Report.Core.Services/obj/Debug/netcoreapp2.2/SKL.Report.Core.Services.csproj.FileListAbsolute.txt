@@ -1,0 +1,14 @@
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\bin\Debug\netcoreapp2.2\SKL.Report.Core.Services.deps.json
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\bin\Debug\netcoreapp2.2\SKL.Report.Core.Services.dll
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\bin\Debug\netcoreapp2.2\SKL.Report.Core.Services.pdb
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\bin\Debug\netcoreapp2.2\SKL.Report.Core.Models.dll
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\bin\Debug\netcoreapp2.2\SKL.Report.Core.Models.pdb
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\obj\Debug\netcoreapp2.2\SKL.Report.Core.Services.csprojAssemblyReference.cache
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\obj\Debug\netcoreapp2.2\SKL.Report.Core.Services.csproj.CoreCompileInputs.cache
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\obj\Debug\netcoreapp2.2\SKL.Report.Core.Services.AssemblyInfoInputs.cache
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\obj\Debug\netcoreapp2.2\SKL.Report.Core.Services.AssemblyInfo.cs
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\obj\Debug\netcoreapp2.2\SKL.Report.Core.Services.csproj.CopyComplete
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\obj\Debug\netcoreapp2.2\SKL.Report.Core.Services.dll
+G:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\obj\Debug\netcoreapp2.2\SKL.Report.Core.Services.pdb
+g:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\bin\Debug\netcoreapp2.2\SKL.Report.Core.Services.runtimeconfig.json
+g:\WorkProjects\TestReport\trunk\SKL_Report_Core\src\SKL.Report.Core.Services\bin\Debug\netcoreapp2.2\SKL.Report.Core.Services.runtimeconfig.dev.json

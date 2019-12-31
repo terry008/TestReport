@@ -1,0 +1,112 @@
+@{
+    Layout="/Areas/ReportAdmin/Views/Shared/_List.cshtml";
+}
+@section head{
+    <style>
+        body{
+            background-color: white;;
+        }
+    </style>
+}
+<div class="layui-row" style="margin-top:20px;">
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名/电话</label>
+        <div class="layui-input-inline">
+            <input type="text" id="stuname" required  lay-verify="required" placeholder="学员姓名或电话" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-input-block">
+            <button class="layui-btn" id="btn_search">搜索</button>
+            <button class="layui-btn" id="btn_add">添加成绩</button>
+            <button class="layui-btn" id="btn_out">导出成绩</button>
+            <button class="layui-btn" id="btn_calc">计算排名及平均费</button>
+        </div>
+    </div>
+</div>
+<!--列表区域-->
+<div id="contentlist" class="layui-row">
+</div>
+<!--分页区域-->
+<div id="pager" class="layui-row">
+</div>
+@section footer{
+    <script>
+        $(function(){
+            //初始数据
+            LoadData(true,1);
+            //搜索
+            $('#btn_search').click(function(){
+                LoadData(true,1);
+            });
+            //添加成绩
+            $('#btn_add').click(function(){
+                layerFrame('/reportadmin/scores/edit','添加成绩',500,530,true);
+            })
+            //修改
+            $('#contentlist').on('click','a[data-action=EditTest]',function(){
+                layerFrame('/reportadmin/test/edit/'+$(this).attr('data-id'),'修改报告',700,530,false);
+            })
+            //成绩详情
+            $('#contentlist').on('click','a[data-action=scoresDetail]',function(){
+                layerFrame('/reportadmin/scores/list/'+$(this).attr('data-id'),'成绩管理',1100,900,false);
+            })
+            //设置模块
+            $('#contentlist').on('click','a[data-action=SetModule]',function(){
+                layerFrame('/reportadmin/Module/Edit?rptid='+$(this).attr('data-id'),'模块设置',800,900,false);
+            })
+            //设置评语
+            $('#contentlist').on('click','a[data-action=PYSet]',function(){
+                layerFrame('/reportadmin/Pingyu/Edit?rptid='+$(this).attr('data-id'),'评语设置',1000,1000,false);
+            })
+            
+        })
+
+        //搜索数据
+        function LoadData(reloadPager,pageIndex){
+            var name=$('#stuname').val();
+            $.ajax({
+                url:'/reportadmin/Scores/ListContent',
+                data:{stuname:name,pageIndex:pageIndex},
+                type:'get',
+                success:function(data){
+                    //console.log(data)
+                    $('#contentlist').html(data);
+                    //渲染分页
+                    if(reloadPager){
+                        InitPager();
+                    }
+                },
+                error:function(data){
+                    //console.log(data.status);
+                    //未登录
+                    if(data.status==401){
+                        window.location.reload();
+                    }
+                }
+            });
+        }
+
+        //分页
+        function InitPager(){
+            var name=$('#testname').val();
+            $.get('/reportadmin/test/ListRecordCount?testname='+name,function(data){
+                var recordCount=parseInt(data);
+                var laypage = layui.laypage;
+                laypage.render({
+                    elem: 'pager' //注意，这里的 test1 是 ID，不用加 # 号
+                    ,count: recordCount //数据总数，从服务端得到
+                    ,jump: function(obj, first){
+                        //obj包含了当前分页的所有参数，比如：
+                        //console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                        //console.log(obj.limit); //得到每页显示的条数
+                        
+                        //首次不执行
+                        if(!first){
+                        //do something
+                            LoadData(false,obj.curr);
+                        }
+                    }
+                });
+            });
+        }
+    </script>
+}

@@ -1,0 +1,36 @@
+@model IEnumerable<SKL.Report.Core.UI.Models.ModulesDetail>
+@{
+    string modules=string.Join(",",Model.Select(c=>$"'{c.ModuleName}'"));
+    string myScores=string.Join(",",Model.Select(c=>c.MyModuleScores.ToString("n")));
+    string avgScores=string.Join(",",Model.Select(c=>c.ModuleAvgScores.ToString("n")));
+    string guid=Guid.NewGuid().ToString("N");
+}
+<div>
+    <div id="@guid" class="zhu_tu"></div>
+    <script>
+        echarts.init(document.getElementById('@guid')).setOption({
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross'
+                    }
+                },
+                legend: {
+                    data: ['我的得分', '平均分']
+                },
+                xAxis: [{
+                    data: [@Html.Raw(modules)]
+                }],
+                yAxis: {},
+                series: [{
+                    name: '我的得分',
+                    type: 'bar',
+                    data: [@(myScores)]
+                }, {
+                    name: '平均分',
+                    type: 'line',
+                    data: [@(avgScores)]
+                }]
+            });
+    </script>
+</div>
